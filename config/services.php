@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+    'client_id' => '1357793294285862',
+    'client_secret' => '747af9a642c807cc5369401bce56b980',
+    'redirect' => 'http://vui.com/facebook/callback',
+    ],
+
 ];
