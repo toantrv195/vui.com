@@ -1,4 +1,4 @@
-@extend('hompage.master')
+@extends('homepage.master')
 @section('content')
 
     <div class="mainBox photoDetails">

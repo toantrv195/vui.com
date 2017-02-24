@@ -28,7 +28,8 @@ class HomeController extends Controller
         $user = User::find($user_id);
 
         if ($user->role == 1 ) {
-             return view('admin.category.list');
+             // return view('admin.category.list');
+            return redirect()->route('admin.cate.index');
          } else {
             return view('homepage.pages.home');
          }

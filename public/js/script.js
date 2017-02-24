@@ -21,7 +21,8 @@ $(document).ready(function() {
     $(".close").click(function(){
         $(".overlay").fadeToggle("fast");
     });
- 
+    
+   $("div.alert").delay(3000).slideUp();
 });
 
 

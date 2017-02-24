@@ -2,7 +2,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>stress.com</title>
+    <title>vuivui.com</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="stylesheet" href="/css/owl.carousel.css">
     <link rel="stylesheet" href="/css/owl.theme.css">

@@ -46,7 +46,13 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-
+            <div class="col-lg-12">
+                @if (Session::has('flash_message'))
+                    <div class="alert alert-{{ Session::get('flash_level') }}">
+                        {{ Session::get('flash_message') }}
+                    </div>
+                @endif
+            </div>
                 @yield('content')
 
                 <!-- /.row -->
@@ -75,13 +81,8 @@
     <script src="/admin_asset/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
+    <script src="/admin_asset/js/myscript.js"></script>
+
 </body>
 
 </html>

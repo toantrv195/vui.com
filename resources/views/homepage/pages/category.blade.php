@@ -1,4 +1,4 @@
-@extend('homepage.master')
+@extends('homepage.master')
 @section('content')
     <div class="tips">
         <h2>troll</h2>

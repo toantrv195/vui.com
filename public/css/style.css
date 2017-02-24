@@ -1894,7 +1894,7 @@ canvas {
     top: 0;
 }
 .videoListItem .thumb .playIcon {
-    background: url(images/play_icon.png) no-repeat 0 0;
+    background: url(/images/play_icon.png) no-repeat 0 0;
     top: 175px;
     left: 321px;
     width: 86px;
@@ -1902,7 +1902,7 @@ canvas {
     position: absolute
 }
 .videoListItem .thumb .play:hover .playIcon {
-   background: url(images/play_icon.png) no-repeat 0 -60px; 
+   background: url(/images/play_icon.png) no-repeat 0 -60px; 
 }
 
 .videoListItem .thumbMix {
