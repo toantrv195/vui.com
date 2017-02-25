@@ -22,7 +22,7 @@
                         <a href="{{ route('admin.cate.index') }}">List Category</a>
                     </li>
                     <li>
-                        <a href="#">Add Category</a>
+                        <a href="{{ route('admin.cate.create') }}">Add Category</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -31,10 +31,10 @@
                 <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">List Product</a>
+                        <a href="{{ route('admin.product.index') }}">List Product</a>
                     </li>
                     <li>
-                        <a href="#">Add Product</a>
+                        <a href="{{ route('admin.product.create') }}">Add Product</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
