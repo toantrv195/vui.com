@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
-    <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin - vui.com</title>
 
     <!-- Bootstrap Core CSS -->
@@ -65,6 +63,8 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+    
     <script src="/admin_asset/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

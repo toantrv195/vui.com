@@ -16,7 +16,7 @@
                 <input class="form-control" name="txtCateName" placeholder="Please Enter Category Name" />
             </div>
             <button type="submit" class="btn btn-default">Category Add</button>
-        <form>
+        </form>
     </div>
 </div>
 @endsection

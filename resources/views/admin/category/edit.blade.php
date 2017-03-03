@@ -15,7 +15,7 @@
                 <input class="form-control" name="txtCateName" value="{{ old('txtCateName', isset($category) ? $category['name'] :null) }}" />
             </div>
             <button type="submit" class="btn btn-default">Category Edit</button>
-        <form>
+        </form>
     </div>
 </div>
 @endsection

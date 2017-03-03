@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label>Name</label>
-                <input class="form-control" name="txtName" placeholder="Please Enter Username" value="{{ old('txtName') }}" />
+                <input class="form-control" name="txtName" placeholder="Please Enter Name " value="{{ old('txtName') }}" />
             </div>
             <div class="form-group">
                 <label>Intro</label>
@@ -54,7 +54,7 @@
                 </label>
             </div>
             <button type="submit" class="btn btn-default">Product Add</button>
-        <form>
+        </form>
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-4">

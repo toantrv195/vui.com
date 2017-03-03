@@ -19,7 +19,7 @@ class CreateVideosTable extends Migration
             $table->string('alias');
             $table->text('intro')->nullable();
             $table->string('image');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->integer('view')->nullable();
             $table->string('comment')->nullable();
             $table->string('source');
