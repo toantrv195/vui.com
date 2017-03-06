@@ -81,7 +81,7 @@ class UserController extends Controller
                 $user->save();
 
             return redirect()->route('admin.user.index')
-                ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complate Update User']);
+                ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Update User']);
     }
 
     

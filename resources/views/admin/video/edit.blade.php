@@ -10,11 +10,11 @@
     <!-- /.col-lg-12 -->
     <div class="col-lg-7" style="padding-bottom:120px">
     @include('admin.block.errors')
-        <form action="{{ route('admin.video.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.video.update', $video['id']) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
                 <label>Category</label>
-                <select class="form-control" name="category">
+                <select class="form-control" name="cate">
                     <option>Please Choose Category</option>
                     @foreach($cate as $item)
                         @if ($item->id == $video->cate_id)
@@ -27,24 +27,23 @@
             </div>
             <div class="form-group">
                 <label>Intro</label>
-                <textarea class="form-control" rows="3" name="txtIntro">{{ old('txtIntro', isset($video) ? $video['intro'] : null) }}</textarea>
+                <textarea class="form-control" rows="3" name="txtIntro">{{ old('txtIntro', isset($video) ? $video['introduce'] : null) }}</textarea>
             </div>
             <div class="form-group">
-                <label>Images</label>
-                <input type="file" name="fImages" onchange="loadFile(event)">
-                <img id="output" style="width: 40%; height: 35%; margin-top: 20px;"/>
-                    <script>
-                        var loadFile = function(event) {
-                        var output = document.getElementById('output');
-                        output.src = URL.createObjectURL(event.target.files[0]);
-                      };
-                    </script>
+                <label>Image- current</label>
+                <div class="img_current" >
+                <img src="{{ asset('upload/videos/images/'. $video['image']) }}" class="img_current" >
+                <input type="hidden" name="img_current" value="{{ $video['image'] }}">
+                </div>
             </div>
             <div class="form-group">
                 <label>Video</label>
-                 <input class="form-control" name="link" placeholder="Please Enter link video" 
-                 value="{{ old('link', isset($video) ? $video['link'] : null) }}" />
             </div>
+            <video width="400" controls>
+              <source src="{{ asset('upload/videos/'.$video->video_name) }}" type="video/mp4">
+              <input type="hidden" name="video_current" value="{{ $video['video_name'] }}">
+            </video>
+            
             <div class="form-group">
                 <label>Link</label>
                  <input class="form-control" name="link" placeholder="Please Enter link video" 

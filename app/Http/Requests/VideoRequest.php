@@ -25,9 +25,8 @@ class VideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'txtIntro' => 'required|unique:videos,intro',
+            'txtIntro' => 'required|unique:videos,introduce',
             'fImages' => 'image| mimes:jpeg,jpg,png | max:1000',
-            'link' => 'required',
             'source' => 'required'
         ];
 
@@ -39,7 +38,6 @@ class VideoRequest extends FormRequest
             'txtIntro.required' => 'Plear Enter Introduce',
             'txtIntro.unique' => 'This Name Video Is Exists',
             'fImages.image' => 'This File not Image',
-            'link.required' => 'Please Enter Link Video',
             'source.required' => 'Please Enter Source '
         ];
     }

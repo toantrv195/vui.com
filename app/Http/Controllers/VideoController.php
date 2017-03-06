@@ -9,6 +9,7 @@ use App\Video;
 use App\Category;
 use Auth;
 use DB;
+use File;
 
 class VideoController extends Controller
 {
@@ -28,9 +29,9 @@ class VideoController extends Controller
         $file_name = $request->file('fImages')->getClientOriginalName();
         $file_video_name = $request->file('fVideo')->getClientOriginalName();
         $video = new Video();
-        $video->name = $file_video_name;
-        $video->intro = $request->txtIntro;
+        $video->introduce = $request->txtIntro;
         $video->alias = changeTitle($request->txtIntro);
+        $video->video_name = $file_video_name;
         $video->image = $file_name;
         $video->link = $request->link;
         $video->view = 0;
@@ -43,7 +44,7 @@ class VideoController extends Controller
         $video->save();
 
         return redirect()->route('admin.video.index')
-            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complate Add Ne Video']);
+            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Add New Video']);
 
     }
 
@@ -54,13 +55,33 @@ class VideoController extends Controller
          return view('admin.video.edit', compact('video', 'cate'));
     }
 
-    public function update($id)
+    public function update($id, Request $request)
     {
+        $video = Video::find($id);
+        $video->introduce = $request->txtIntro;
+        $video->alias = changeTitle($request->txtIntro);
+        $video->video_name = $request->input('video_current');
+        $video->image = $request->input('img_current');
+        $video->link = $request->link;
+        $video->view = 0;
+        $video->comment = 0;
+        $video->source = $request->source;
+        $video->user_id = Auth::user()->id;
+        $video->cate_id = $request->cate;
+        $video->save();
 
+       return redirect()->route('admin.video.index')
+            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Update Video']);
     }
 
-    public  function delete($id)
+    public  function destroy($id)
     {
+        $video = Video::find($id);
+        File::delete('upload/videos/images/'.$video->image);
+        File::delete('upload/videos/'.$video->video_name);
+        $video->delete();
 
+        return redirect()->route('admin.video.index')
+            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Delete Video']);
     }
 }

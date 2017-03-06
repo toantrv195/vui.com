@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label>Intro</label>
-                <textarea class="form-control" rows="2" name="txtIntro"></textarea>
+                <textarea class="form-control" rows="2" name="txtIntro">{{ old('txtIntro') }}</textarea>
             </div>
             <div class="form-group">
                 <span class="note">*</span><label>Images Video</label>
@@ -47,11 +47,11 @@
 
             <div class="form-group">
                 <label>Link</label>
-                 <input class="form-control" name="link" placeholder="Please Enter link video"/>
+                 <input class="form-control" name="link" placeholder="Please Enter link video" value="{{ old('link') }}" />
             </div>
             <div class="form-group">
                 <span class="note">*</span><label>source</label>
-                <input class="form-control" name="source" placeholder="Please Enter link video"/>
+                <input class="form-control" name="source" placeholder="Please Enter link video" value="{{ old('source') }}" />
             </div>
             <button type="submit" class="btn btn-default">Add video</button>
         </form>

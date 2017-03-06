@@ -31,7 +31,7 @@ Route::post('admin/register', 'Auth\RegisterController@register');
 Route::get('admin/login', 'Auth\LoginController@showLoginForm');
 Route::post('admin/login', 'Auth\LoginController@login');   
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin' , 'middleware' => 'admin'], function() {
 
     //cate
     Route::group(['prefix' => 'category'], function() {

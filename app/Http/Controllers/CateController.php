@@ -30,7 +30,7 @@ class CateController extends Controller
     	$category->save();
 
     	return redirect()->route('admin.cate.index')
-    			->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complate Add Category']);
+    			->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Add Category']);
     }
 
     //edit
@@ -49,7 +49,7 @@ class CateController extends Controller
         $cate->save();
 
         return redirect()->route('admin.cate.index')
-                ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complate update Category']);
+                ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete update Category']);
 
 
     }
@@ -61,6 +61,6 @@ class CateController extends Controller
         $category = Category::find($id);
         $category->delete();
         return redirect()->route('admin.cate.index')
-                ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complate Delete Category']);
+                ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Delete Category']);
     }
 }

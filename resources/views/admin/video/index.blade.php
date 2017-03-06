@@ -31,11 +31,11 @@
                         <?php $cate = DB::table('categories')->select('id', 'name')->where('id', $video->cate_id)->first(); ?>
                         {{ $cate->name }}
                     </td>
-                    <td>{{ $video->intro }}</td>
+                    <td>{{ $video->introduce }}</td>
                     <td><img width="210" height="150" src="{{ asset('upload/videos/images/'.$video->image) }}" alt=""></td>
                     <td>
                         <video width="400" controls>
-                          <source src="{{ asset('upload/videos/'.$video->name) }}" type="video/mp4">
+                          <source src="{{ asset('upload/videos/'.$video->video_name) }}" type="video/mp4">
                         </video> <br> <br>
                         <a href="{{ $video->link }}" target="_blank">{{ $video->link }}</a>
                     </td>
