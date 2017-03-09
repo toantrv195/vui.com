@@ -26,7 +26,7 @@ class VideoRequest extends FormRequest
     {
         return [
             'txtIntro' => 'required|unique:videos,introduce',
-            'fImages' => 'image| mimes:jpeg,jpg,png | max:1000',
+            'fImages' => 'image| mimes:jpeg,jpg,png,PNG | max:1000',
             'source' => 'required'
         ];
 

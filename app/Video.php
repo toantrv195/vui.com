@@ -8,15 +8,10 @@ class Video extends Model
 {
     protected $table = 'videos';
 
-    protected $fillable = ['name', 'alias', 'intro', 'image', 'link', 'view', 'comment'];
+    protected $fillable = ['name', 'alias', 'intro', 'image', 'link', 'view', 'comment', 'source', 'user_id', 'cate_id'];
 
     public function user()
     {
     	return $this->belongsTo(User::class);
-    }
-
-    Public function category() 
-    {
-    	return $this->belongsTo(Category::class);
     }
 }

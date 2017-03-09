@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'category' => 'required',
-            'txtName' => 'required|unique:products,name',
+            'txtName' => 'required|unique:products,title',
             'txtIntro' => 'required',
             'fImages' => 'image',
             'source' => 'required'
@@ -38,8 +38,8 @@ class ProductRequest extends FormRequest
        
             return [
             'category.required' => 'Please Choose Category',
-            'txtName.required' => 'Please Enter Name',
-            'txtIntro.unique' => 'This Name Product Is Exist',
+            'txtName.required' => 'Please Enter title',
+            'txtIntro.unique' => 'This title Product Is Exist',
             'txtIntro.required`' => 'Please Enter Introduce',
             'fImages.image' => 'This File Not Image ?',
             'source.required' => 'Please Enter Source'

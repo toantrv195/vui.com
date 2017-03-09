@@ -240,7 +240,7 @@ ul#menuBar {
     font-weight: bold;
     font-size: 13.8px;
     float: left;
-    margin: 3px 0 0;
+    margin: 6px 0 0;
 }
 #menuBar li {
     display: inline-block;
@@ -620,9 +620,30 @@ div.darkBox {
     -webkit-box-shadow: 0 0 3px #443c3c;
     margin-bottom: 20px;
 }
+
+div.darkBox .item h3{
+    text-transform: none;
+    font-size: 14px;
+}
+
+.videoItem {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #d3ded3;
+    height: 12%;
+}
+.videoItem .duration {
+    float: left;
+    width: 130px;
+}
+
+.videoItem .thumb .info{
+    width: 130px;
+    float: right;
+}
 div.fullWidth {
     width:100%;
 }
+
 .newVideo .hotVideos .item {
     margin: 5px;
     width:100%;
@@ -644,8 +665,9 @@ div.newVideo h2 {
     min-height: 50px;
 }
 div.mainBox h2 {
-    font-size: 14px;
+    font-size: 18px;
     margin: 0 0 5px;
+    text-transform: capitalize;
 }
 div.highlightBox {
     background-color: #FFFFB6
@@ -669,7 +691,7 @@ div.tips {
     font-size: 12px;
     display:block;
     min-height: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 div.tips h2 {
     color: #C39;
@@ -971,10 +993,11 @@ div.last {
     color: green;
 }
 .viewComments span.more a{
-    color: #e20fc7;
     font-size: 13px;
     font-weight: bold;
-    font-style: italic;
+    color: #c50b82;
+    padding: 3px 6px 4px;
+    
 }
 
 .viewComments span.more a:hover{
@@ -1005,7 +1028,7 @@ div.last {
     color: #333;
 }
 .favorite .fav {
-    background: url(../images/favorites_icon.png) no-repeat transparent -12px 0;
+    background: url(/images/favorites_icon.png) no-repeat transparent -12px 0;
     width: 12px;
     height: 12px;
     display: inline-block;
@@ -1013,19 +1036,28 @@ div.last {
     top: 1px;
 }
 .favorite .fav.active {
-    background: url(../images/favorites_icon.png) no-repeat transparent 0 0;
+    background: url(/images/favorites_icon.png) no-repeat transparent 0 0;
 }
 span.source {
-    background: url(../images/source_icon.png) no-repeat transparent;
+    background: url(/images/source_icon.png) no-repeat transparent;
     padding-left: 18px;
     font-size: 14px;
     font-weight: bold;
+}
+
+span.text {
+    color: #00A5F0;
+    font-size: 14px;
+    font-weight: bold;
+}
+div.commentContainer{
+    margin: 50px 0px 1px 0px;
 }
 .photoList .stats .comments {
     margin-left: 5px;
 }
 .likes {
-    background: url(../images/like_icon.png) no-repeat transparent;
+    background: url(/images/like_icon.png) no-repeat transparent;
     padding-left: 18px;
 }
 .photoList .stats .likes {
@@ -1143,9 +1175,10 @@ div.plzVoteBottom a {
 }
 /* Photo details */
 div.photoDetails h1 {
-    font-size: 18px;
-    margin: 0 0 5px;
+    font-size: 20px;
+    margin: 0 0 15px;
     line-height: 1.2em;
+    text-transform: capitalize;
 }
 div.photoDetails .photoInfo {
     float: left;
@@ -1174,7 +1207,8 @@ div.photoDetails .uploader .info {
 }
 div.photoDetails .uploader .info a {
     display: block;
-    line-height: 13px;
+    line-height: 48px;
+    margin-left: 3px;
 }
 div.report-actions {
     font-size: 13px;
@@ -1203,12 +1237,22 @@ div.adminActions a.disabled {
     margin-top: 10px
 }
 div.photoImg {
-    margin-bottom: 10px;
+    margin-bottom: 10%;
     text-align: center;
-    overflow: hidden
 }
+
+div.img_detail {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    text-align: center;
+}
+div.img_detail img{
+    max-width: 100%;
+    margin: 0 auto -30px;
+}
+
 div.photoImg img {
-    max-width: 650px;
+    max-width: 100%;
     margin: 0 auto -30px;
 }
 div.commentContainer {
@@ -1260,7 +1304,7 @@ div.photoDetails .stats .comments {
     margin-left: 10px;
 }
 div.photoDetails div.source {
-    margin: 5px 0;
+    margin: 10px 0;
 }
 div.photoDetails div.source .text {
     font-weight: normal;
@@ -1282,14 +1326,14 @@ div.photoDetails .navButtons {
     margin-top: 2px;
 }
 div.photoDetails .prev {
-    background: url(../images/prev_icon.png) no-repeat scroll 0 -16px transparent;
+    background: url(/images/prev_icon.png) no-repeat scroll 0 -16px transparent;
     padding-left: 15px;
 }
 div.photoDetails .prev:hover {
     background-position: 0 0;
 }
 div.photoDetails .next {
-    background: url(../images/next_icon.png) no-repeat scroll right -16px transparent;
+    background: url(/images/next_icon.png) no-repeat scroll right -16px transparent;
     padding-right: 15px;
     margin-left: 10px;
 }
@@ -3504,6 +3548,12 @@ div.overlay {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 600;
+    color: brown;
+}
+
+.photo-content a.photo-title:hover{
+    color: #e204bb;
 }
 
 .photo-content .photo-date {
@@ -3516,7 +3566,7 @@ div.overlay {
 }
 
 .photo-owner a.owner-img, a.comment-avatar {
-    border: 1px solid #f54b1e;
+    border: 1px solid #70c70c;
 }
 
 .photo-owner a.owner-img {
@@ -3534,7 +3584,7 @@ div.overlay {
     width: 40%;
     display: inline-block;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 400;
     color: #444;
     line-height: 35px;
     text-overflow: ellipsis;

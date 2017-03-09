@@ -10,7 +10,7 @@
         <!-- /.col-lg-12 -->
         <div class="col-lg-7" style="padding-bottom:120px">
              @include('admin.block.errors')
-            <form action="{{ route('admin.user.update', $data['id']) }}" method="POST">
+            <form action="{{ route('admin.user.update', $data['id']) }}" method="POST" >
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label>Username</label>
@@ -53,6 +53,7 @@
                     />
 
                 </div>
+
 
                 @if (Auth::user()->id != $id)
                 <div class="form-group">

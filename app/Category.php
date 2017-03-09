@@ -15,8 +15,4 @@ class Category extends Model
     	return $this->HasMany(product::class);
     }
 
-    public function video()
-    {
-    	return $this->HasMany(Video::class);
-    }
 }

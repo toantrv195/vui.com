@@ -8,7 +8,8 @@ use App\User;
 use DB;
 use Hash;
 use Auth;
-
+use File;
+use Image;
 class UserController extends Controller
 {
     
@@ -74,6 +75,7 @@ class UserController extends Controller
             if (Auth::user()->id == $id) {
                 $user->name = $request->txtUser;
                 $user->email = $request->txtEmail;
+              
             } else {
                 
                 $user->role = $request->rdoLevel;

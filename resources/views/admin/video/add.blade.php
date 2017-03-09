@@ -17,11 +17,7 @@
             <div class="form-group">
                 <span class="note">*</span><label>Category</label>
                 <select class="form-control" name="cate">
-                    <option>Please Choose Category</option>
-                    <?php $cates = DB::table('categories')->select('id', 'name')->get();  ?>
-                        @foreach ($cates as $cate)
-                            <option value="{{ $cate->id }}">{{ $cate->name }} </option>
-                        @endforeach
+                    <option value="8">Video</option>
                 </select>
             </div>
             <div class="form-group">
@@ -51,8 +47,17 @@
             </div>
             <div class="form-group">
                 <span class="note">*</span><label>source</label>
-                <input class="form-control" name="source" placeholder="Please Enter link video" value="{{ old('source') }}" />
+                <label class="radio-inline">
+                    <input name="source" value="1" checked="" type="radio">vui.com
+                </label>
+                <label class="radio-inline">
+                    <input name="source" value="2" type="radio">Facebook
+                </label>
+                <label class="radio-inline">
+                    <input name="source" value="3" type="radio">Youtube
+                </label>
             </div>
+
             <button type="submit" class="btn btn-default">Add video</button>
         </form>
     </div>

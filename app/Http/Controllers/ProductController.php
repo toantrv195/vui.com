@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
         $filename = $request->file('fImages')->getClientOriginalName();
         $product = new Product();
-        $product->name = $request->txtName;
+        $product->title = $request->txtName;
         $product->alias = changeTitle($request->txtName);
         $product->intro = $request->txtIntro;
         $product->image = $filename;
@@ -57,7 +57,7 @@ class ProductController extends Controller
             }
         }
         return redirect()->route('admin.product.index')
-            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complate Add Product']);
+            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Add Product']);
     }
 
     public function edit($id)
@@ -72,7 +72,7 @@ class ProductController extends Controller
     public function update($id, Request $request)
     {
         $product = Product::find($id);
-        $product->name = request::input('txtName');
+        $product->title = request::input('txtName');
         $product->alias = changeTitle(request::input('txtName'));
         $product->intro = request::input('txtIntro');
         $product->view = 0;
@@ -113,7 +113,7 @@ class ProductController extends Controller
         }
         
         return redirect()->route('admin.product.index')
-            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complate Update Product']);
+            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Update Product']);
     }
 
 
@@ -129,7 +129,7 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('admin.product.index')
-            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complate Delete Product']);
+            ->with(['flash_level' => 'success', 'flash_message' => 'Success !! Complete Delete Product']);
 
     }
 

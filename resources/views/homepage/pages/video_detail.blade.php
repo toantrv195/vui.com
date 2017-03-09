@@ -2,66 +2,118 @@
 @section('content')
 <div class="mainBox photoDetails">
     <div class="photoInfo">
-        <h1>em từ xem chùa sang chế ảnh !</h1>
-        <div class="stats"> <span class="views">Lượt xem:<span class="number">184</span></span> <span class="comments">Lượt bình luận: <span class="number">2</span></span>
+        <h1>{{ $video_detail->introduce }}</h1>
+        <div class="stats">
+            <span class="views">Lượt xem:<span class="number">{{ $video_detail->view }}</span></span>
+            <span class="comments">Lượt bình luận: <span class="number">{{ $video_detail->comment }}</span></span>
         </div>
-        <div class="source"> <span class="source"> Nguồn: <span class="text">Tự làm</span> </span>
+        <div class="source"> 
+            <span class="source"> Nguồn:
+                <span class="text">
+                    @if ($video_detail->source == 1)
+                        {{ 'vivu.com' }}
+                    @elseif ($video_detail->source == 2)
+                        {{ 'Facebook' }}
+                    @else 
+                        {{ 'Youtube' }}
+                    @endif
+                </span> 
+            </span>
         </div>
     </div>
-    <div class="uploader"> Đăng 31 phút trước bởi
-        <div> <img src="http://i.xem.mkocdn.com/i.xem.sb/data/avatar/default.jpg" alt="Lương Tấn Đạt">
-            <div class="info"> <a href="/uploader/217804" title="Lương Tấn Đạt">Lương Tấn Đạt</a> </div>
+    <div class="uploader"> Đăng 
+        <?php \Carbon\Carbon::setLocale('vi'); ?>
+        {{ \Carbon\Carbon::createfromTimeStamp(strtotime($video_detail->created_at))->diffForHumans() }}
+     trước bởi
+        <div> 
+            @if ($video_detail->avatar != null)
+                    <img src="{{ $video_detail->avatar }}" alt="{{ $video_detail->name }}">
+                @else
+                    <img src="/images/avatar.jpg" alt="">
+                @endif  
+            <div class="info"> 
+                <a href="{{ $video_detail->profile }}" target="_blank">{{ $video_detail->name }}</a> 
+            </div>
             <div class="clear"> </div>
         </div>
     </div>
     <div class="clear"> </div>
     <div class="news"> </div>
     <div data-fixedtop="40" class="fixedScrollDetector"> </div>
+
     <div class="likeButton fixedScroll " style="position: relative;">
         <div class="text"> Thích ảnh này? </div>
         <div class="fbLikeButton">
-            <div class="fb-like fb_iframe_widget"> <span>                       
-                <iframe name="f22f6256c1c9178" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="https://www.facebook.com/plugins/like.php?action=like&amp;app_id=181604928677768&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F0eWevUAMuoH.js%3Fversion%3D42%23cb%3Df112efa2e5a0a4%26domain%3Dxem.vn%26origin%3Dhttp%253A%252F%252Fxem.vn%252Ff29a8228b370cd8%26relation%3Dparent.parent&amp;container_width=0&amp;href=http%3A%2F%2Fxem.vn%2Fphoto%2F913207&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=false" style="border: none; visibility: visible; width: 127px; height: 20px;" class=""></iframe>
-                </span> </div>
-        </div>
-        <div class="navButtons"> <a class="prev" href="" title="hotkey: ← hoặc Z">Prev</a> <a class="next" href="" title="hotkey: → hoặc X">next</a> </div>
-    </div>
-    <div class="clear"> </div>
-    {{-- video --}}
-    <div class="video">
-        <div class="details-player"> 
-        <video width="100%" controls="" autoplay="" loop="" poster="images/bgvideo.png" class="video"> <source src="video/nxnn.mp4" type="video/mp4"> Your browser does not support the video tag. 
-
-        </video> 
-        </div>
-    </div>
-    <div style="text-align:center">
-        <div id="div-gpt-ad-1481882121257-2" style="height:90px; width:728px;" data-google-query-id="CO7294-BkdICFQ8klgod7EkEFQ">
-            <div id="google_ads_iframe_/165899848/xem-viewpic-trungtam-728x90_0__container__" style="border: 0pt none;">
-                <iframe id="google_ads_iframe_/165899848/xem-viewpic-trungtam-728x90_0" title="3rd party ad content" name="google_ads_iframe_/165899848/xem-viewpic-trungtam-728x90_0" width="728" height="90" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" srcdoc="" style="border: 0px; vertical-align: bottom;">
-                    
-                </iframe>
+            {{-- fb like --}}
+            <div class="fb-like" data-href="{{ url('detail', $video_detail->alias) }}" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true">
             </div>
         </div>
+        {{-- <div class="navButtons"> 
+            <a class="prev" href="" title="hotkey: ← hoặc Z">Prev</a> 
+            <a class="next" href="" title="hotkey: → hoặc X">next</a> 
+        </div> --}}
     </div>
-    <div class="btn-social">
-        <a target="_blank" title="Share on Facebook" href="http://www.facebook.com/sharer/sharer.php?u=http://xem.vn/photo/913207">
-            <div style="float:left" class="btn-facebook">Share on Facebook</div>
-        </a>
-        <a target="_blank" title="Share on Twitter" href="http://twitter.com/?status=em%20t%E1%BB%AB%20xem%20ch%C3%B9a%20sang%20ch%E1%BA%BF%20%E1%BA%A3nh%20%21http://xem.vn/photo/913207">
-            <div class="btn-twitter">Share on Twitter</div>
-        </a>
-    </div>
-    <div class="featuredFanPage">
-        <h4>
-            <img src="http://s.xem.mkocdn.com/bundles/mkoxem/images/thumbsup.png" alt="xem.vn"> Like
-            <a href="https://www.facebook.com/fan.xem.vn" target="_blank" class="colorful">stress.com trên Facebook</a> để được cười nhiều hơn
-        </h4>
-        <div> <img src="images/logoo.jpg" alt="logo"> </div>
-    </div>
+
+    <div class="clear"> </div>
+    {{-- video --}}
+    @if (isset($video_detail->link) && $video_detail->source !=1) 
+        @if ($video_detail->source == 3)
+            <?php
+                $str = $video_detail->link;
+                $str = str_replace( 'watch?v=', 'embed/', $str );
+            ?>
+            <iframe width="100%" height="500" src="{{ $str }}" frameborder="0" allowfullscreen>  
+            </iframe>
+            
+        @else
+            <div class="fb-video" data-href="{{ $video_detail->link }}" data-allowfullscreen="true" data-width="1000" ></div>
+        @endif
+    @else
+        <div class="video">
+            <div class="details-player"> 
+            <video width="100%" controls="" autoplay="" loop="" poster="images/bgvideo.png" class="video">
+                <source src="{{ asset('upload/videos/' .$video_detail->video_name) }}" type="video/mp4"> Your browser does not support the video tag. 
+
+            </video> 
+            </div>
+        </div>
+    @endif
+    {{-- btn fb --}}
+
+    {{-- page web --}}
+
     <div class="commentContainer">
         <h3>Bình luận</h3>
-        <div class="fb-comments fb_iframe_widget" data-href="http://xem.vn/photo/913207" data-num-posts="3" data-width="728" fb-xfbml-state="rendered"><span style="height: 423px; width: 728px;"><iframe id="f20d0b4b5e4c1dc" name="f78cdee9f9d9fc" scrolling="no" title="Facebook Social Plugin" class="fb_ltr" src="https://www.facebook.com/plugins/comments.php?api_key=181604928677768&amp;channel_url=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F0eWevUAMuoH.js%3Fversion%3D42%23cb%3Df3af399aa15a61%26domain%3Dxem.vn%26origin%3Dhttp%253A%252F%252Fxem.vn%252Ff29a8228b370cd8%26relation%3Dparent.parent&amp;href=http%3A%2F%2Fxem.vn%2Fphoto%2F913207&amp;locale=en_US&amp;numposts=3&amp;sdk=joey&amp;width=728" style="border: none; overflow: hidden; height: 423px; width: 728px;"></iframe></span> </div>
+        <div class="fb-comments" data-href="http://vui.com" data-width="728px" data-numposts="5"></div>
+    </div>
+
+    <div class="clear"></div>
+    <div class="fullWidth newVideo">
+    @if ($video_cate->count() !=0)
+        <div class="box darkBox hotVideos">
+            <h3> Clip khác</h3>
+            <!-- slide -->
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                @foreach ($video_cate as $item)
+                    <div class="item">
+                        <a href="{{ url('video', $item->alias) }}" >
+                            <div class="thumb">
+                                <img src="{{ asset('upload/videos/images/' .$item->image) }}" style="max-width:158px;max-height:111px;margin-bottom:5px" alt="hotest photo"> 
+                            </div>
+                            <div class="info">
+                                <h3> {{ $item->introduce }} </h3>
+                                <div class="stats">
+                                    <span class="views" title="">{{ $item->view }}</span> 
+                                    <span class="comments" title="">{{ $item->comment }}</span> 
+                                </div>
+                            </div>
+                            <div class="clear"> </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
     </div>
 </div>
 @endsection

@@ -39,8 +39,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Name</label>
-                    <input class="form-control" name="txtName" placeholder="Please Enter Username" value="{{ old('txtName', isset($product) ? $product->name : null) }}"/>
+                    <label>Title</label>
+                    <input class="form-control" name="txtName" placeholder="Please Enter Username" value="{{ old('txtName', isset($product) ? $product->title : null) }}"/>
                 </div>
                 <div class="form-group">
                     <label>Intro</label>

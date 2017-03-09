@@ -22,7 +22,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Name</label>
+                <label>Name Title</label>
                 <input class="form-control" name="txtName" placeholder="Please Enter Name " value="{{ old('txtName') }}" />
             </div>
             <div class="form-group">

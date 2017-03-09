@@ -12,7 +12,7 @@
             <tr align="center">
                 <th>ID</th>
                 <th>Category</th>
-                <th>Name</th>
+                <th>Title</th>
                 <th>image</th>
                 <th>view</th>
                 <th>comment</th>
@@ -37,7 +37,7 @@
                     
 
                 </td>
-                <td>{{ $product->name }}</td>
+                <td>{{ $product->title }}</td>
                 <td><img width="210" height="150" src="{{ asset('upload/images/'.$product->image) }}" alt=""></td>
                 <td>{{ $product->view }}</td>
                 <td>{{ $product->comment }}</td>

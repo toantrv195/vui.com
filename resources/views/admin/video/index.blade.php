@@ -27,10 +27,7 @@
             @foreach ($videos as $video)
                 <tr class="odd gradeX" align="center">
                     <td>1</td>
-                    <td> 
-                        <?php $cate = DB::table('categories')->select('id', 'name')->where('id', $video->cate_id)->first(); ?>
-                        {{ $cate->name }}
-                    </td>
+                    <td> video</td>
                     <td>{{ $video->introduce }}</td>
                     <td><img width="210" height="150" src="{{ asset('upload/videos/images/'.$video->image) }}" alt=""></td>
                     <td>
@@ -42,7 +39,15 @@
                     <td>{{ $video->view }}</td>
                     <td>{{ $video->comment }}</td>
                     
-                    <td>{{ $video->source }}</td>
+                    <td>
+                        @if ($video->source == 1)
+                            {{ 'vivu.com' }}
+                        @elseif ($video->source == 2)
+                            {{ 'Facebook' }}
+                        @else 
+                            {{ 'Youtube' }}
+                        @endif
+                    </td>
                     <td>{{ \Carbon\Carbon::createfromTimeStamp(strtotime($video->created_at))->diffForHumans() }} </td>
 
                     <td class="center"><i class="fa fa-trash-o  fa-fw"></i>

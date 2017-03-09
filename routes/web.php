@@ -22,8 +22,15 @@ Route::get('facebook/callback', 'Auth\SocialController@handleProviderCallback');
 
 
 Auth::routes();
-
+ 
+ //pages 
 Route::get('/home', 'HomeController@index');
+Route::get('category/{alias}', ['as' => 'category', 'uses' => 'HomeController@getcategory']);
+Route::get('detail/{alias}', ['as' => 'detail', 'uses' => 'HomeController@getdetail']);
+
+//video
+Route::get('{alias}', ['as' => 'video', 'uses' => 'HomeController@videocate']);
+Route::get('video/{alias}', ['as' => 'video.detail', 'uses' => 'HomeController@videodetail']);
 
 //admin login
 Route::get('admin/register', 'Auth\RegisterController@showRegistrationForm');

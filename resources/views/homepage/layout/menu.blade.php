@@ -1,14 +1,18 @@
 <div id="headerContent">
-    <h1><a href="/" id="logo" title="Cộng đồng chế ảnh troll , ảnh vui hài hước , anh che haivl">stress.com</a></h1>
+    <h1><a href="{{ url('/') }}" id="logo" title="Cộng đồng chế ảnh troll , ảnh vui hài hước , anh che haivl">stress.com</a></h1>
     <div class="mid_header">
         <ul id="menuBar">
-            <li class="hotTag"> <img src="images/home.png" width="20" height="20">
+            <li class="hotTag"> 
+                <a href="{{ url('/') }}"><img src="/images/home.png" width="20" height="20"></a>
             </li>
-            <li class="selected"><a href="/" title="Cộng đồng chế ảnh troll , ảnh vui hài hước , anh che haivl">Mới</a> </li>
-            <li><a href="category.html" title="Bình chọn ảnh">Troll</a> </li>
-            <li><a href="#" title="">Video</a> </li>
-            <li><a href="#" title="Ảnh đang hot">Hot<img src="images/quiznhe.png" style="margin-left: -6px;"></a> </li>
-            <li><a href="#" title="Cũ người mới ta :)">Cũ</a> </li>
+            <?php $cates = DB::table('categories')->orderBy('id', 'ASC')->get(); ?>
+            @foreach ($cates as $cate)
+                <li {{-- class="selected" --}}><a href="{{ url('category', $cate->alias) }}">{{ $cate->name }}</a> </li>
+            @endforeach
+           {{--  <li><a href="category.html" title="Bình chọn ảnh">Troll</a> </li>
+            <li><a href="#" title="">Video</a> </li> --}}
+            <li><a href="{{ url('video') }}" title="video">Video<img src="/images/quiznhe.png" style="margin-left: -6px;"></a> </li>
+            
             <li> <span class="upload">Đăng bài</span>
                 <ul> 
                 @if (Auth::guest())
@@ -22,12 +26,6 @@
                     @endif
                 @endif
                 </ul>
-            </li>
-            <li> <span>ảnh đẹp</span>
-                <!-- ul>
-                    <li><a href="/builder/rage" title="Chế rage comic">Chế rage comic</a> </li>
-                    <li><a href="/builder/memes" title="Chế meme">Chế meme</a> </li>
-                </ul> -->
             </li>
 
         </ul>

@@ -13,16 +13,9 @@
         <form action="{{ route('admin.video.update', $video['id']) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
-                <label>Category</label>
+                <span class="note">*</span><label>Category</label>
                 <select class="form-control" name="cate">
-                    <option>Please Choose Category</option>
-                    @foreach($cate as $item)
-                        @if ($item->id == $video->cate_id)
-                            <option value="{{ $item->id }}" selected='selected'>{{ $item->name }}</option>
-                        @else
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endif
-                    @endforeach
+                    <option value="8">Video</option>
                 </select>
             </div>
             <div class="form-group">
@@ -49,10 +42,30 @@
                  <input class="form-control" name="link" placeholder="Please Enter link video" 
                  value="{{ old('link', isset($video) ? $video['link'] : null) }}" />
             </div>
+            
             <div class="form-group">
-                <label>source</label>
-                 <input class="form-control" name="source" placeholder="Please Enter link video" 
-                    value="{{ old('source', isset($video) ? $video['source'] : null) }}" />
+                <span class="note">*</span><label>source</label>
+                <label class="radio-inline">
+                    <input name="source" value="1" checked=""
+                        @if ($video['source'] == 1)
+                            checked="checked"
+                        @endif
+                     type="radio">vui.com
+                </label>
+                <label class="radio-inline">
+                    <input name="source" value="2" 
+                        @if ($video['source'] == 2)
+                            checked="checked"
+                        @endif
+                    type="radio">Facebook
+                </label>
+                <label class="radio-inline">
+                    <input name="source" value="3" 
+                        @if ($video['source'] == 3)
+                            checked="checked"
+                        @endif
+                    type="radio">Youtube
+                </label>
             </div>
             <button type="submit" class="btn btn-default">Update video</button>
         <form>
