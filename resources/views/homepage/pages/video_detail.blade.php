@@ -37,6 +37,21 @@
             <div class="clear"> </div>
         </div>
     </div>
+    {{-- delete user upload --}}
+    <?php 
+        $user_id = Auth::guard()->id();
+    ?>
+    @if ($video_detail->user_id == $user_id)
+        
+        <div class="delete"> 
+            <button type="button">
+                <a href="{{ route('upload.video.delete', $video_detail->alias) }}">Xóa Video này</a>
+            </button>
+        </div> 
+    @else 
+        <div class="delete"> </div> 
+    @endif
+
     <div class="clear"> </div>
     <div class="news"> </div>
     <div data-fixedtop="40" class="fixedScrollDetector"> </div>
@@ -45,13 +60,9 @@
         <div class="text"> Thích ảnh này? </div>
         <div class="fbLikeButton">
             {{-- fb like --}}
-            <div class="fb-like" data-href="{{ url('detail', $video_detail->alias) }}" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+            <div class="fb-like" data-href="{{ url('video', $video_detail->alias) }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
             </div>
         </div>
-        {{-- <div class="navButtons"> 
-            <a class="prev" href="" title="hotkey: ← hoặc Z">Prev</a> 
-            <a class="next" href="" title="hotkey: → hoặc X">next</a> 
-        </div> --}}
     </div>
 
     <div class="clear"> </div>
@@ -66,7 +77,7 @@
             </iframe>
             
         @else
-            <div class="fb-video" data-href="{{ $video_detail->link }}" data-allowfullscreen="true" data-width="1000" ></div>
+            <div class="fb-video" data-href="{{ $video_detail->link }}" data-allowfullscreen="true" data-width="1000" height="500"></div>
         @endif
     @else
         <div class="video">
@@ -84,7 +95,7 @@
 
     <div class="commentContainer">
         <h3>Bình luận</h3>
-        <div class="fb-comments" data-href="http://vui.com" data-width="728px" data-numposts="5"></div>
+        <div class="fb-comments" data-href="{{ url('video', $video_detail->alias) }}" data-width="100%" data-numposts="5"></div>
     </div>
 
     <div class="clear"></div>
@@ -97,9 +108,15 @@
                 @foreach ($video_cate as $item)
                     <div class="item">
                         <a href="{{ url('video', $item->alias) }}" >
-                            <div class="thumb">
-                                <img src="{{ asset('upload/videos/images/' .$item->image) }}" style="max-width:158px;max-height:111px;margin-bottom:5px" alt="hotest photo"> 
-                            </div>
+                            @if (!empty($item->image))
+                                <div class="thumb">
+                                    <img src="{{ asset('upload/videos/images/' .$item->image) }}" style="max-width:158px;max-height:111px;margin-bottom:5px" alt="hotest photo"> 
+                                </div>
+                            @else
+                                <div class="thumb">
+                                    <img src="/images/bgvideo1.png" style="max-width:158px;max-height:111px;margin-bottom:5px" alt="hotest photo"> 
+                                </div>
+                            @endif
                             <div class="info">
                                 <h3> {{ $item->introduce }} </h3>
                                 <div class="stats">

@@ -13,7 +13,9 @@
                 <button type="submit">Sign in</button>
                 <div>
                     <div class="oauth-divider"> <span></span> <span>or</span> <span></span> </div>
-                    <button type="button" class="fb"><a href="{{ url('facebook/redirect') }}"><img src="/images/bgfb.png" alt="login with facebook"></a></button>
+                    <a href="{{ url('facebook/redirect') }}">
+                        <button type="button" class="fb"><img src="/images/bgfb.png" alt="login with facebook"></button>
+                    </a>
                 </div>
             </form>
         </div>

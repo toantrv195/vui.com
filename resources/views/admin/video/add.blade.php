@@ -25,7 +25,7 @@
                 <textarea class="form-control" rows="2" name="txtIntro">{{ old('txtIntro') }}</textarea>
             </div>
             <div class="form-group">
-                <span class="note">*</span><label>Images Video</label>
+                <label>Images Video <p style="font-size:10px; color:#c7c0c0;">(không bắt buộc)</p></label>
                 <input type="file" name="fImages" onchange="loadFile(event)">
                 <img id="output" style="width: 40%; height: 35%; margin-top: 20px;"/>
                     <script>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group">
-                <span class="note">*</span><label>Video</label>
+                <label>Video<p style="font-size:10px; color:#c7c0c0;">(không bắt buộc)</p></label>
                 <input type="file" name="fVideo" accept="video/*">
             </div>
 

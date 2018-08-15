@@ -36,9 +36,11 @@
 
                         <td>
                         @if ($user->id == 2 && $user->role == 1)
-                               <span style="color:red; font-weight: bold">Super Admin</span> 
+                               <span style="color:#0e7aec; font-weight: bold">Super Admin</span> 
                          @elseif( $user->role == 1 )
-                                <span style="color:#349854;">Admin</span>
+                                <span style="color:#349854; font-weight: bold">Admin</span>
+                        @elseif( $user->role ==2 )
+                                <span style="color:red; font-weight: bold">Banned</span>
                         @else
                                 Member
                         @endif

@@ -25,17 +25,32 @@
             <div class="form-group">
                 <label>Image- current</label>
                 <div class="img_current" >
-                <img src="{{ asset('upload/videos/images/'. $video['image']) }}" class="img_current" >
+                <img src="{{ asset('upload/videos/images/'. $video['image']) }}" class="img_current" style="width:300px; height:150px;">
                 <input type="hidden" name="img_current" value="{{ $video['image'] }}">
                 </div>
             </div>
             <div class="form-group">
                 <label>Video</label>
             </div>
-            <video width="400" controls>
-              <source src="{{ asset('upload/videos/'.$video->video_name) }}" type="video/mp4">
-              <input type="hidden" name="video_current" value="{{ $video['video_name'] }}">
-            </video>
+
+            @if (isset($video['link']) && $video['source'] != 1)
+               @if ($video['source'] == 3)
+                    <?php
+                        $str = $video['link'];
+                        $str = str_replace( 'watch?v=', 'embed/', $str );
+                    ?>
+                    <iframe width="400" height="225" src="{{ $str }}" frameborder="0" allowfullscreen>  
+                    </iframe>
+                @else 
+                    <div class="fb-video" data-href="{{ $video['link'] }}" data-allowfullscreen="true" data-width="400" height="225" ></div>
+                @endif
+
+            @else
+                <video width="400" controls>
+                  <source src="{{ asset('upload/videos/'.$video->video_name) }}" type="video/mp4">
+                  <input type="hidden" name="video_current" value="{{ $video['video_name'] }}">
+                </video>
+             @endif
             
             <div class="form-group">
                 <label>Link</label>

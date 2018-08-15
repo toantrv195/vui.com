@@ -47,7 +47,7 @@ class UserController extends Controller
     {
         $data = User::find($id);
 
-        if ((Auth::user()->id != 2) && ($id == 2 || ($data['role'] ==0) || ($data['role'] == 1 && (Auth::user()->id != $id)))) {
+        if ((Auth::user()->id != 2) && ($id == 2 || ($data['role'] == 1 && (Auth::user()->id != $id)))) {
             return redirect()->route('admin.user.index')
                 ->with(['flash_level'=>'danger','flash_message'=>'Sorry !! You Can\'t Access update User ']);
         }

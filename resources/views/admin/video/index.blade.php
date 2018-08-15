@@ -14,9 +14,8 @@
                 <th>Category</th>
                 <th>Name</th>
                 <th>image</th>
-                <th>link or video</th>
+                <th>video</th>
                 <th>view</th>
-                <th>comment</th>
                 <th>Source</th>
                 <th>Time</th>
                 <th>Delete</th>
@@ -31,13 +30,32 @@
                     <td>{{ $video->introduce }}</td>
                     <td><img width="210" height="150" src="{{ asset('upload/videos/images/'.$video->image) }}" alt=""></td>
                     <td>
-                        <video width="400" controls>
+                        @if (isset($video->link) && $video->source != 1)
+                           @if ($video->source == 3)
+                                <?php
+                                    $str = $video->link;
+                                    $str = str_replace( 'watch?v=', 'embed/', $str );
+                                ?>
+                                <iframe width="400" height="225" src="{{ $str }}" frameborder="0" allowfullscreen>  
+                                </iframe>
+                            @else 
+                                <div class="fb-video" data-href="{{ $video->link }}" data-allowfullscreen="true" data-width="400" height="225" ></div>
+                            @endif
+
+                        @else
+                            <video width="400" controls>
+                              <source src="{{ asset('upload/videos/'.$video->video_name) }}" type="video/mp4">
+                            </video>
+                         @endif
+
+
+
+                       {{--  <video width="400" controls>
                           <source src="{{ asset('upload/videos/'.$video->video_name) }}" type="video/mp4">
                         </video> <br> <br>
-                        <a href="{{ $video->link }}" target="_blank">{{ $video->link }}</a>
+                        <a href="{{ $video->link }}" target="_blank">{{ $video->link }}</a> --}}
                     </td>
                     <td>{{ $video->view }}</td>
-                    <td>{{ $video->comment }}</td>
                     
                     <td>
                         @if ($video->source == 1)

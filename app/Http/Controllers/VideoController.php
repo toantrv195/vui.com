@@ -26,13 +26,19 @@ class VideoController extends Controller
 
     public function store(VideoRequest $request)
     {
-        $file_name = $request->file('fImages')->getClientOriginalName();
+        $image = $request->file('fImages');
+        $file_name = "";
+        if (!empty($image)) {
+            $file_name = $image->getClientOriginalName();
+            $request->file('fImages')->move('upload/videos/images/', $file_name);
+        } else {
+             $file_name = "";
+        }
         
         $video_name = $request->file('fVideo');
         $file_video_name = "";
         if (!empty($video_name)) {
             $file_video_name = $video_name->getClientOriginalName(); 
-            
             $request->file('fVideo')->move('upload/videos', $file_video_name);
         } else {
             $file_video_name = "";
@@ -49,7 +55,7 @@ class VideoController extends Controller
         $video->source = $request->source;
         $video->user_id = Auth::user()->id;
         $video->cate_id = $request->cate;
-        $request->file('fImages')->move('upload/videos/images/', $file_name);
+       
         
         $video->save();
 

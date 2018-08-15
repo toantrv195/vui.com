@@ -66,11 +66,18 @@
                         type="radio">Admin
                     </label>
                     <label class="radio-inline">
+                        <input name="rdoLevel" value="0"
+                            @if ($data['role'] == 0) 
+                                checked="checked"  
+                            @endif
+                         type="radio">Member
+                    </label>
+                    <label class="radio-inline">
                         <input name="rdoLevel" value="2"
                             @if ($data['role'] == 2) 
                                 checked="checked"  
                             @endif
-                         type="radio">Member
+                         type="radio">Banned
                     </label>
                 </div>
                 @endif

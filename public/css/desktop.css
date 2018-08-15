@@ -1,6 +1,12 @@
+@charset "utf-8";
+
+
 * {
+    margin: 0px;
+    padding: 0px;
     outline: none;
 }
+
 body {
     font-family: arial,verdana,serif;
     font-size: 12px;
@@ -158,9 +164,9 @@ span.list {
     height: 25px;
     border-radius: 4px;
     font-size: 14px;
-    float: left;
+    float: right;
     margin-top: 12px;
-    margin-left: 10%;
+    margin-right: 2%;
 }
 
 .txt_search {
@@ -180,9 +186,11 @@ span.list {
     cursor: pointer;
 }
 
+
 /*drop menu*/
 
 .mid_header {
+    display: inline-block;
     float: left;
     height: 26px;
     margin-top: 10px;
@@ -236,6 +244,11 @@ a#logo {
     left: 3%;
     z-index: 1;
 }
+
+.menu_icon {
+    display: none;
+}
+
 ul#menuBar {
     font-weight: bold;
     font-size: 13.8px;
@@ -297,51 +310,7 @@ ul#menuBar {
     padding: 5px 8px;
     font-size: 13px;
 }
-/*#search {
-    margin: 6px 10px 0 0;
-    float: right;
-}
-#search .query {
-    float: left;
-    height: 20px!important;
-    margin-top: 3px;
-}
-#headerRight {
-    float: right;
-    margin-top: 10px;
-}
-#headerRight .searchButton, #headerRight .notiButton {
-    background: url(../images/search_icon.png) no-repeat;
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    float: left;
-}
-#headerRight .searchButton:hover {
-    background: url(../images/search_icon.png?v=1) no-repeat 0 -30px;
-}
-#headerRight .notiButton {
-    background: url(../images/message_icon.png?v=1) no-repeat;
-    text-align: right;
-    width: 35px;
-    margin-left: 5px;
-}
-#headerRight .notiButton:hover {
-    background: url(../images/message_icon.png?v=1) no-repeat 0 -30px;
-}
-#headerRight .notiCount {
-    width: inherit;
-    font-weight: bold;
-    color: white;
-    position: relative;
-    background-color: red;
-    padding: 0 2px;
-    line-height: 12px;
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    top: -2px;
-}*/
+/
 #headerRight .avatar {
     float: left;
     position: relative;
@@ -360,16 +329,7 @@ ul#menuBar {
 #headerRight .avatarLink {
     display: inline-block
 }
-/*#headerRight ul {
-    background-color: black;
-    border-radius: 0 0 5px 5px;
-    -webkit-border-radius: 0 0 5px 5px;
-    -moz-border-radius: 0 0 5px 5px;
-    position: absolute;
-    padding: 5px 0;
-    z-index: 1000;
-    right: 0;
-}*/
+
 #headerRight .avatar:hover .blank {
     display: block;
     cursor: pointer;
@@ -550,7 +510,12 @@ ul#menuBar {
 #rightColumn .fixedWidth {
     width: 300px;
 }
+.fmobile {
+    display: none;
+}
+
 #footer {
+    display: block;
     margin: 30px 0 20px;
     text-shadow: 0 1px #EEE;
     line-height: 1.5em;
@@ -588,8 +553,6 @@ div.box {
     background-color: white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    /*-webkit-border-radius: 5px;
-    -moz-border-radius: 5px;*/
     box-shadow: 0 0 3px #AAA;
     -moz-box-shadow: 0 0 3px #AAA;
     -webkit-box-shadow: 0 0 3px #AAA;
@@ -603,6 +566,9 @@ div.mainBox h1 {
 div.box h2, div.mainBox h2 {
     font-size: 14px;
     margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 div.box h3, div.mainBox h3 {
     font-size: 21px;
@@ -698,8 +664,9 @@ div.tips h2 {
     font-weight: bold;
     text-transform: uppercase;
     border-bottom: double #C39;
-    font-size: 25px;
+    font-size: 20px;
     padding-bottom: 3px;
+    margin-bottom: 25px;
 }
 div.tips span {
     text-transform: uppercase;
@@ -1160,7 +1127,7 @@ div.moreTop {
 }
 a.nextListPage {
     float: left;
-    width: 708px;
+    width: 652px;
     color: white;
     display: none;
     margin-bottom: 10px;
@@ -1195,6 +1162,24 @@ div.photoDetails .uploader {
     -moz-border-radius: 3px;
     color: #545454;
     margin-bottom: 5px;
+}
+
+.delete button{
+    float: right;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    background: #24bbff;
+    border: 1px solid #24bbff;
+    font-size: 15px;
+    border-radius: 4px;
+}
+.delete button a{
+    color: white;
+    font-size: 15px;
+}
+.delete button:hover{
+    color: white;
+    background: #c12677;
 }
 div.photoDetails .uploader img {
     float: left;
@@ -1340,7 +1325,7 @@ div.photoDetails .next {
 div.photoDetails .next:hover {
     background-position: top right;
 }
-div.photoDetails .vote {
+/*div.photoDetails .vote {
     float: left;
     height: 29px;
     width: 136px;
@@ -1401,7 +1386,7 @@ div.photoDetails .vote .voteDown a span {
     margin-left: 11px;
 }
 .voteOne .photoListItemSmall {
-}
+}*/
 
 .photoListItemSmall {
     border-bottom: 1px solid #DDD;
@@ -1646,26 +1631,7 @@ ul.guidelines li {
     color: #fff;
 }
 
-.loadMore{
-    background-color: #EDEFF4;
-    border: 1px solid #D8DFEA;
-    padding: 10px;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    height: 16px;
-    font-size: 12px;
-    font-weight: bold;
-    -webkit-transition: background-color .2s linear;
-}
-.loadMore:hover {
-    background-color:#D8DFEA;
-    text-decoration:none;
-    cursor:pointer
-}
-.notifications .loadMore {
-    margin-top: 20px
-}
+
 /* Faceboook help */
 .facebookHelp {
     font-size: 14px;
@@ -1937,6 +1903,10 @@ canvas {
     height: 450px;
     top: 0;
 }
+.videoListItem .thumb video {
+    display: none;
+}
+
 .videoListItem .thumb .playIcon {
     background: url(/images/play_icon.png) no-repeat 0 0;
     top: 175px;
@@ -3395,6 +3365,7 @@ div.overlay {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 999999998;
 }
 
     div.overlay > div.login-wrapper {
@@ -3520,7 +3491,7 @@ div.overlay {
 /*index*/
 .PhotoListItem li {
     float: left;
-    width: 324px;
+    width: 46%;
     height: 400px;
     margin: 2px 23px 20px 1px;
     list-style: none;
@@ -3531,7 +3502,7 @@ div.overlay {
 
 .PhotoListItem img {
     width: 100%;
-    height: 240px;
+    height: 247px;
     padding: 2px 2px 5px 0px;
 }
 
@@ -3566,7 +3537,7 @@ div.overlay {
 }
 
 .photo-owner a.owner-img, a.comment-avatar {
-    border: 1px solid #70c70c;
+    border: 1px solid #c70c6d;
 }
 
 .photo-owner a.owner-img {
@@ -3581,7 +3552,7 @@ div.overlay {
     background-position: center;
 }
 .photo-owner a.owner-name {
-    width: 40%;
+    width: 35%;
     display: inline-block;
     font-size: 15px;
     font-weight: 400;
@@ -3594,7 +3565,7 @@ div.overlay {
 a.likesWrapper {
     margin-top: 6px;
     float: right;
-    width: 40%;
+    width: 44%;
 }
 
 .photo-owner .btn-facebook, h3.widget-title {
@@ -3723,4 +3694,292 @@ a.likesWrapper {
     position: relative;
     display: block;
     padding-left: 25px;
+}
+
+/*upload img and video*/
+
+/*image*/
+#main {
+    margin: 0px 0 5px;
+    width: 728px;
+    float: left;
+}
+
+.scriptolution-soft-box.static {
+    margin: 0;
+    z-index: auto;
+}
+.scriptolution-soft-box {
+    margin: 10% auto 0;
+    width: 740px;
+    z-index: 100;
+}
+.scriptolution-soft-box .head {
+    background-color: white;
+    border-radius: 5px 5px 0 0;
+    
+    margin:0px 20px 20px 0px;
+    position: relative;
+}
+.scriptolution-soft-box .head ul.switch {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+.scriptolution-soft-box .head ul.switch li {
+    float: left;
+    margin: 15px 5px 0px 15px;
+    border-radius: 5px;
+}
+
+.scriptolution-soft-box .head ul.switch li a {
+    font-size: 12px;
+    font-weight: bold;
+    color: #ba0069;
+    text-shadow: 0 1px 0 #fff;
+    display: block;
+    line-height: 15px;
+    padding: 55px 0 15px;
+    width: 56px;
+    text-align: center;
+}
+
+.scriptolution-soft-box .head ul.switch li a.video {
+    background: url(/images/bg_video.png) no-repeat;
+}
+.scriptolution-soft-box .head ul.switch li a.video:hover {
+    background: url(/images/video.png) no-repeat;
+    color: black;
+}
+
+.scriptolution-soft-box .head ul.switch li a.photo {
+    background: url(/images/bg_camera.png) no-repeat;
+    
+}
+
+.scriptolution-soft-box .head ul.switch li a.photo:hover{
+    background: url(/images/camera.png) no-repeat;
+    color: black;
+}
+
+/*content*/
+
+.scriptolution-soft-box .content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 0px 20px 20px 0px;
+}
+form.modal h3 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+form.modal .field {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+form.modal .field.checkbox {
+    margin-bottom: 10px;
+    text-align: center;
+}
+.contact-wrapper textarea {
+    float: left;
+    display: block;
+    width: 480px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-transition: border-color .2s linear;
+    -moz-transition: border-color .2s linear;
+}
+#leftColumn form.modal .field label {
+    overflow: hidden;
+    display: block;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 0px;
+}
+#leftColumn form.modal label{
+    margin-left: none;
+}
+#leftColumn form.modal .field p.info {
+    color: #999;
+    font-size: 11px;
+    margin: 0 0 0 198px;
+    line-height: 20px;
+    clear: both;
+}
+#leftColumn form.modal .field h4 {
+    float: left;
+    width: 178px;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0 20px 0 0;
+    line-height: 36px;
+}
+#leftColumn form.modal .field input.file {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 6px 10px;
+    width: 478px;
+    float: left;
+    margin: 0;
+    line-height: 24px;
+    font-size: 12px;
+}
+
+#leftColumn form.modal .field input.text, .contact-wrapper textarea{
+    float: left;
+    font-size: 15px;
+    display: block;
+    width: 480px;
+    border: 1px solid rgba(11, 165, 234, 0.92);
+    border-radius: 5px;
+    padding: 9px;
+}
+label.category {
+    float: left;
+    font-size: 15px;
+    display: block;
+    width: 300px;
+    border: 1px solid rgba(11, 165, 234, 0.92);
+    border-radius: 5px;
+    padding: 9px;
+}
+
+#leftColumn form.modal .field input.text, .contact-wrapper textarea{
+    float: left;
+    font-size: 15px;
+    display: block;
+    width: 480px;
+    border: 1px solid rgba(11, 165, 234, 0.92);
+    border-radius: 5px;
+    padding: 9px;
+}
+
+
+.scriptolution-soft-box .actions {
+    background-color: #fdfdfd;
+    margin: 0px 20px 10px 0px;
+    overflow: hidden;
+    border-top: 1px solid #ddd;
+}
+
+.scriptolution-soft-box .actions ul.button {
+    float: right;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.scriptolution-soft-box .actions ul.button li {
+    float: left;
+    margin: 20px 20px 20px 5px;
+}
+
+.scriptolution-soft-box .actions ul.button a.cancel {
+    background-color: transparent;
+    color: #999;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-transition: color .2s linear;
+    margin-right: 10px;
+}
+
+#leftColumn form button.cancel {
+    padding: 8px 25px 8px 25px;
+    border-radius: 5px;
+    color: #f4f4f4;
+    font-size: 14px;
+    font-weight: bold;
+    background: #1b1a1a;
+    text-transform: capitalize;
+    border: 1px solid #1b1a1a;
+}
+#leftColumn form button.cancel:hover {
+    background: #e4275d;
+    color: #f4f4f4;
+    cursor: pointer;
+}
+
+#leftColumn form button.send {
+    padding: 8px 25px 8px 25px;
+    border-radius: 4px;
+    color: #f4f4f4;
+    font-size: 14px;
+    font-weight: bold;
+    background: #00a5f0;
+    border:1px solid #00a5f0;
+    text-transform: capitalize;
+}
+
+#leftColumn form button.send:hover {
+    background: #24bbff;
+    color: #f4f4f4;
+    cursor: pointer;
+}
+
+/*msg box*/
+ul.submit-info li{
+    margin: 0 0 20px 15px;
+    list-style-type: disc;
+    font-size: 15px;
+}
+
+/*pagination*/
+#pagination{
+    width:100%;
+    margin:10px auto 10px;
+}
+#pagination a{
+    float:left;
+    list-style:none;
+    border:1px solid #d8cfcf;
+    padding: 5px 11px 5px 11px;
+    margin-left:9px; 
+    font-size: 14px;
+    background: white;   
+}
+
+#pagination a{
+    color:black;
+}
+#pagination a:hover{
+    color:white;
+    font-size: 14px;
+}
+#pagination a:hover{
+    background: #444;
+    color: white;
+}
+
+#pagination a.active {
+    background: #e70976;
+    color: white;
+    font-size: 14px;
+ }
+ #pagination .prev {
+    background: #444;
+    color: white;
+ }
+
+ #pagination .next {
+    background: #444;
+    color: white;
+ }
+
+ /*scroll*/
+ .td-scroll-up {
+    cursor: pointer;
+    position: fixed;
+    bottom: 4px;
+    right: 4px;
+    width: 50px;
+    height: 50px;
+    display: none;
+    background-image: url(/images/up1.png);
+    background-repeat: no-repeat;
+    transform: translate3d(0, 70px, 0);
+   -webkit-transform: translate3d(0,0,0);
 }

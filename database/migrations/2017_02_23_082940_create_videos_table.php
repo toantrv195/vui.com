@@ -18,10 +18,9 @@ class CreateVideosTable extends Migration
             $table->string('introduce')->unique();
             $table->string('alias');
             $table->string('video_name')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('link')->nullable();
             $table->integer('view')->nullable();
-            $table->string('comment')->nullable();
             $table->integer('source');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

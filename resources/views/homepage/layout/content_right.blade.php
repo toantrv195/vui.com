@@ -44,9 +44,15 @@
                     <div class="videoItem">
                         <a href="{{ url('video', $video->alias) }}" target="_parent" >
                             <div class="thumb">
-                                <div class="duration">
-                                    <img src="{{ asset('upload/videos/images/'. $video->image) }}" alt="hot video" width="120" />
-                                </div>
+                                @if (!empty($video->image))
+                                    <div class="duration">
+                                        <img src="{{ asset('upload/videos/images/'. $video->image) }}" alt="hot video" width="120" />
+                                    </div>
+                                 @else
+                                    <div class="duration">
+                                        <img src="/images/bgvideo1.png" alt="hot video" width="120" />
+                                    </div>
+                                @endif
                             
                                 <div class="info">
                                     <h2>{{ $video->introduce }}</h2>

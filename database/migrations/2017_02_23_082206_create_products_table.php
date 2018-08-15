@@ -20,7 +20,6 @@ class CreateProductsTable extends Migration
             $table->text('intro')->nullable();
             $table->string('image');
             $table->integer('view')->nullable();
-            $table->string('comment')->nullable();
             $table->integer('hot')->nullable();
             $table->string('source');
             $table->integer('user_id')->unsigned();

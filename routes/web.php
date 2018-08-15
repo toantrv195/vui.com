@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('homepage.pages.home');
-});
+Route::get('/', 'HomeController@homepage');
 
 //login facebook
 Route::get('facebook/redirect', 'Auth\SocialController@redirectToProvider');
@@ -24,13 +22,37 @@ Route::get('facebook/callback', 'Auth\SocialController@handleProviderCallback');
 Auth::routes();
  
  //pages 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', ['as' => 'home.index', 'uses' => 'HomeController@index']);
+
+Route::get('homepage', ['as' =>'page.gethome', 'uses' => 'HomeController@homepage']);
 Route::get('category/{alias}', ['as' => 'category', 'uses' => 'HomeController@getcategory']);
 Route::get('detail/{alias}', ['as' => 'detail', 'uses' => 'HomeController@getdetail']);
+
+// user upload
+Route::get('user/{name}', ['as' => 'user.upload', 'uses' => 'HomeController@userupload']);
 
 //video
 Route::get('{alias}', ['as' => 'video', 'uses' => 'HomeController@videocate']);
 Route::get('video/{alias}', ['as' => 'video.detail', 'uses' => 'HomeController@videodetail']);
+
+//upload
+Route::group(['prefix' => 'upload'], function() {
+    Route::get('create', 'UploadController@index');
+    Route::group(['prefix' => 'image'], function() {
+        Route::get('create', ['as' => 'upload.image.getcreate', 'uses' => 'UploadController@getImage']);
+        Route::post('create', ['as' => 'upload.image.postcreate', 'uses' => 'UploadController@postImage']);
+        Route::get('delete/{alias}', ['as' => 'upload.image.delete', 'uses' => 'UploadController@delete']);
+    });
+
+    Route::group(['prefix' => 'video'], function() {
+        Route::get('create', ['as' => 'upload.video.getcreate', 'uses' => 'UploadController@getVideo']);
+        Route::post('create', ['as' => 'upload.video.postcreate', 'uses' => 'UploadController@postVideo']);
+        Route::get('delete/{alias}', ['as' => 'upload.video.delete', 'uses' => 'UploadController@deletevideo']);
+    });
+});
+
+//search
+Route::post('search', ['as' => 'post.search', 'uses' => 'HomeController@search']);
 
 //admin login
 Route::get('admin/register', 'Auth\RegisterController@showRegistrationForm');
@@ -61,6 +83,8 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'admin'], function() {
         Route::post('update/{id}', ['as' => 'admin.product.update', 'uses' => 'ProductController@update']);
         Route::get('destroy/{id}', ['as' => 'admin.product.destroy', 'uses' => 'ProductController@destroy']);
         Route::get('delimg/{id}', ['as' => 'admin.product.delimg', 'uses' => 'ProductController@delimg']);
+        //del all
+        Route::post('delselect', ['as' => 'admin.product.delselectall', 'uses' => 'ProductController@delselectall']);
     });
 
     //video

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
- use Request;
+use Request;
 use App\Http\requests\ProductRequest;
 
 use App\Category;
@@ -12,12 +12,16 @@ use Auth;
 use App\Product_image;
 use File;
 use DB;
+use Image;
 
 class ProductController extends Controller
 {
     public function index()
     {   
-        $products = Product::all();
+         $products = DB::table('products')
+         ->select('id', 'title', 'image', 'view', 'hot', 'source', 'user_id', 'cate_id', 'created_at')
+         ->orderBy('id', 'DESC')->get();
+
         return view('admin.product.list', compact('products'));
     }
 
@@ -29,20 +33,24 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
+        $image = $request->file('fImages');
+
         $filename = $request->file('fImages')->getClientOriginalName();
+        $path = public_path('upload/images/' . $filename);
+        Image::make($image->getRealPath())->resize(337 , 247)->save($path);
+        
         $product = new Product();
         $product->title = $request->txtName;
         $product->alias = changeTitle($request->txtName);
         $product->intro = $request->txtIntro;
         $product->image = $filename;
         $product->view = 0;
-        $product->comment = 0;
         $product->hot = $request->rdoStatus;
         $product->source = $request->source;
         $product->user_id = Auth::user()->id;
         $product->cate_id = $request->category;
         $product->save();
-        $request->file('fImages')->move('upload/images/', $filename);
+        $request->file('fImages')->move('upload/images/details/', $filename);
         $product_id = $product->id;
 
         if ($request->hasFile('Image_details')) {
@@ -76,7 +84,6 @@ class ProductController extends Controller
         $product->alias = changeTitle(request::input('txtName'));
         $product->intro = request::input('txtIntro');
         $product->view = 0;
-        $product->comment = 0;
         $product->hot = request::input('rdoStatus');
         $product->source = request::input('source');
         $product->user_id = Auth::user()->id;
@@ -85,9 +92,15 @@ class ProductController extends Controller
         $image_current = 'upload/images/'.Request::input('img_current');
         
         if (!empty(Request::file('fImages'))) {
+            
+            $image = Request::file('fImages');
+
             $file_name = Request::file('fImages')->getClientOriginalName();
+            $path = public_path('upload/images/' . $file_name);
+            Image::make($image->getRealPath())->resize(337 , 247)->save($path);
+
             $product->image = $file_name;
-            Request::file('fImages')->move('upload/images/', $file_name);
+            Request::file('fImages')->move('upload/images/details/', $file_name);
 
             if (File::exists($image_current)) {
                 File::delete($image_current);
@@ -149,4 +162,21 @@ class ProductController extends Controller
         }
     }
 
+    // delall
+    public function delselectall()
+    {
+        if (Request::ajax()) {
+            $ids = Request::get('ids');
+            foreach ($ids as $id) {
+                $product = Product::findOrFail($id);
+                if (!empty($product)) {
+                    $product->delete();
+                }
+            }
+            
+            return "ok";  
+        }
+    }
+
 }
+

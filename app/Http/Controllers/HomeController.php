@@ -32,9 +32,24 @@ class HomeController extends Controller
     if ($user->role == 1 ) {
         return redirect()->route('admin.cate.index');
      } else {
-        return view('homepage.pages.home');
+        return redirect()->route('page.gethome');
      }
      
+  }
+
+//home page
+  public function homepage(Request $request)
+  {
+    $product = DB::table('products')
+                    ->join('users', 'users.id', '=' , 'products.user_id')
+                    ->select('products.*', 'users.*')->orderBy('products.id', 'DESC')->paginate(4);
+    
+    if ($request->ajax()) {
+        $view = view('data', compact('product'))->render();
+        return response()->json(['html' => $view]);
+    }
+
+      return view('homepage.pages.home', compact('product'));
   }
 
   //category
@@ -43,7 +58,7 @@ class HomeController extends Controller
     $category = DB::table('categories')->select('id', 'name', 'alias')->where('alias', $alias)->first();
     $product_cate = DB::table('products')
         ->join('users', 'users.id', '=', 'products.user_id')
-        ->select('products.*', 'users.*')->where('products.cate_id', $category->id)->orderBy('products.cate_id', 'DESC')->get();
+        ->select('products.*', 'users.*')->where('products.cate_id', $category->id)->orderBy('products.id', 'DESC')->paginate(8);
     
     return view('homepage.pages.category', compact('product_cate', 'category'));
   }
@@ -86,12 +101,29 @@ class HomeController extends Controller
     return view('homepage.pages.detail', compact('product_detail', 'images', 'product_cate', 'prev', 'next'));
   }
 
+  // user upload
+  public function userupload($name)
+  {
+    $user = DB::table('users')->select('*')->where('name', $name)->first();
+    $user_product = DB::table('products')
+        ->join('users', 'users.id', '=', 'products.user_id')
+        ->select('products.*', 'users.*')->where('products.user_id', $user->id)->orderBy('products.id', 'DESC')->paginate(8);
+
+    return view('homepage.pages.uploaduser', compact('user_product'));
+    
+  }
+
   //video
-  public function videocate($alias)
+  public function videocate($alias, Request $request)
   {
     $videos = DB::table('videos')
       ->join('users', 'users.id', '=', 'videos.user_id')
-    ->select('videos.*', 'users.*')->orderBy('videos.id', 'DESC')->get();
+    ->select('videos.*', 'users.*')->orderBy('videos.id', 'DESC')->paginate(2);
+
+    if ($request->ajax()) {
+      $view = view('datavideo', compact('videos'))->render();
+      return response()->json(['html'=>$view]);
+    }
 
     return view('homepage.pages.video', compact('videos'));
   }
@@ -124,4 +156,25 @@ class HomeController extends Controller
     return view('homepage.pages.video_detail', compact('video_detail', 'video_cate')); 
   }
     
+  // search
+  public function search(Request $request)
+  {
+    $search = $request->txtsearch;
+    $products = DB::table('products')
+                    ->join('users', 'users.id', '=' , 'products.user_id')
+                    ->select('products.*', 'users.*')
+                    ->where('products.title', 'like', '%' .$search. '%')
+                    ->orWhere('products.intro', 'like', '%' .$search. '%')
+                    ->orderBy('products.id', 'DESC')->paginate(4);
+
+    return view('homepage.pages.search', compact('products', 'search'));
+  }
+
+  //
+  public function loadmore()
+  {
+    $product = Product::select('*')->get()->toArray();
+    
+    return $product;
+  }
 }
